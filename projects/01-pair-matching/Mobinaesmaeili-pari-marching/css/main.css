@@ -1,0 +1,93 @@
+html {
+  font-size: 16px;
+}
+
+body {
+
+  font-family: "Open Sans", sans-serif;
+  color: #fafafa;
+  font-size: 22.4px;
+  background-color: #e9e9e9;
+  background-image: radial-gradient(circle, #3f9cba 0%, #153346 80%);
+}
+
+
+header {
+  margin: 0 0 8px;
+}
+header h1 {
+  font-size: 32px;
+  padding: 16px 0 0;
+  text-shadow: 2px 3px 7px #2a2929;
+  margin-top: 10px;
+}
+
+.modal {
+  color: #78034b;
+}
+
+.rating {
+  font-size: 24px;
+  color: #ffca28;
+}
+
+.cell {
+  width: 20%;
+  margin: 1%;
+  position: relative;
+  float: left;
+}
+.cell .memory-card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  color: #e4870d;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+.cell .memory-card figure {
+  margin: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 32px;
+  border-radius: 6px;
+  position: absolute;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.cell .memory-card .front {
+  background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+.cell .memory-card .back {
+  background: #fafafa;
+  transform: rotateY(180deg);
+}
+.cell .memory-card.flipped,
+.cell .memory-card.matched {
+  transform: rotateY(180deg);
+}
+.cell .memory-card.matched {
+  cursor: default;
+  color: #4ead26;
+}
+
+.restart {
+  cursor: pointer;
+  color: #131008;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 767px) {
+  .cell .memory-card {
+    line-height: 100px;
+  }
+  .cell .memory-card figure {
+    font-size: 24px;
+  }
+}
+
+
