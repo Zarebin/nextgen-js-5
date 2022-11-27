@@ -1,5 +1,16 @@
 window.onload = function() {
 
+	//Fetch API to get the number of row and column
+	async function chartNumberFunc() {
+		let chartNumber = await fetch('http://192.168.43.126:8000/playgame')
+			.then((response) => response.json()) 
+			.then((data) => {
+				return data.dimension;
+			})
+			.catch(err => alert(err));
+		return chartNumber;
+	}
+
 	// Array of numbers for Game 
 	let gameValues = [];
 	for (let i = 1; i <= 32; i++) {
@@ -17,24 +28,29 @@ window.onload = function() {
     let newHalfTwo = gameValues.slice();
 
 	//Generate Table with 8*8 squares
-	for (var i = 1; i <= 8; i++) {
-		var cardItem = document.createElement('div');
-		cardItem.setAttribute('class', 'cardColumn');
-		cardItem.setAttribute('card-id', i);
-		card.appendChild(cardItem);
-		for (var j = 0; j < 8; j++) {
-			var uniq = 'id' + (new Date()).getTime();
-			let arrLastElement = newHalfTwo.pop();
-			var cardItemTwo = document.createElement('div');
-			cardItemTwo.setAttribute('class', 'cardRow');
-			cardItemTwo.setAttribute('card-id', uniq );
-			cardItemTwo.setAttribute('id', 'cr');
-			cardItemTwo.setAttribute('inner', arrLastElement);
-			cardItemTwo.addEventListener('click', cardMatcher);
-			cardItemTwo.innerHTML = arrLastElement;
-			cardItem.appendChild(cardItemTwo);
+	async function tableGenerator() {
+		let chartNumber = await chartNumberFunc();
+		for (var i = 1; i <= chartNumber; i++) {
+			var cardItem = document.createElement('div');
+			cardItem.setAttribute('class', 'cardColumn');
+			cardItem.setAttribute('card-id', i);
+			card.appendChild(cardItem);
+			for (var j = 0; j < chartNumber; j++) {
+				var uniq = 'id' + (new Date()).getTime();
+				let arrLastElement = newHalfTwo.pop();
+				var cardItemTwo = document.createElement('div');
+				cardItemTwo.setAttribute('class', 'cardRow');
+				cardItemTwo.setAttribute('card-id', uniq );
+				cardItemTwo.setAttribute('id', 'cr');
+				cardItemTwo.setAttribute('inner', arrLastElement);
+				cardItemTwo.addEventListener('click', cardMatcher);
+				cardItemTwo.innerHTML = arrLastElement;
+				cardItem.appendChild(cardItemTwo);
+			}
 		}
-    }
+	}
+
+	tableGenerator();
 
 	// Change inner Value of each square to not be visible
 	setTimeout( () => {
@@ -93,7 +109,6 @@ window.onload = function() {
 		}	
 	}
 }
-
 
 
 
