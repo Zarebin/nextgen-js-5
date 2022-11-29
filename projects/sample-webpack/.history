@@ -1,0 +1,134 @@
+ 3134* cd works/5/nextgen-js-5
+ 3135* ls
+ 3136* cd projects
+ 3137* mkdir sample-webpack
+ 3138* cd sample-webpack
+ 3139* clear
+ 3140* npm --help
+ 3141* npm init --help
+ 3142* npm init
+ 3143* npmhelp init
+ 3144* npm help init
+ 3145* ls
+ 3146* cat package.json
+ 3147* npm run test
+ 3148* nv package.json
+ 3149* npm run hassan
+ 3150* nvm list
+ 3151* nvm 
+ 3152* npm i webpack -D
+ 3153* npm help install
+ 3154* ls
+ 3155* cat package.json
+ 3156* webpack
+ 3157* mkdir src
+ 3158* webpack
+ 3159* touch src/index.js
+ 3160* webpack
+ 3161* nv webpack.config.js
+ 3162* webpack
+ 3163* nv webpack.config.js
+ 3164* webpack
+ 3165* tree
+ 3166* tree -I "node_modules"
+ 3167* mc
+ 3168* nv webpack.config.js
+ 3169* webpack
+ 3170* nv dist/main.js
+ 3171* webpack
+ 3172* nv webpack.config.js
+ 3173* webpack
+ 3174* ls
+ 3175* nv webpack.config.js
+ 3176* webpack
+ 3177* nv webpack.config.js
+ 3178* webpack
+ 3179* nv webpack.config.js
+ 3180* webpack
+ 3181* nv webpack.config.js
+ 3182* nv src/index.js
+ 3183* echo "Hello Ali" >> src/file.txt
+ 3184* cat src/file.txt
+ 3185* webpack
+ 3186* npm i raw-loader -D
+ 3187* webpack
+ 3188* cat dist/main.js
+ 3189* cat dist/bundle.js
+ 3190* cat dist/bundle.js | grep Ali
+ 3191* nv webpack.config.js
+ 3192* rm dist -rf
+ 3193* webpack
+ 3194* cat dist/bundle.js
+ 3195* webpack
+ 3196* nv webpack.config.js
+ 3197* webpack
+ 3198* cat dist/bundle.js
+ 3199* cat dist/bundle.js | grep Ali
+ 3200* npm install --save-dev css-loader
+ 3201* nv src/file.css
+ 3202* nv webpack.config.js
+ 3203* webpack
+ 3204* nv src/index.js
+ 3205* webpack
+ 3206* ls src
+ 3207* nv src/index.js
+ 3208* webpack
+ 3209* npm i style-loader -D
+ 3210* webpack
+ 3211* ls -hal src/file.txt
+ 3212* nv src/file.css
+ 3213* webpack
+ 3214* cat dist/bundle.js | yellow
+ 3215* cat dist/bundle.js | grep yellow
+ 3216* webpack --mode=production
+ 3217* cat dist/bundle.js | grep yellow
+ 3218* ls -hal dist
+ 3219* webpack 
+ 3220* ls -hal dist
+ 3221* nv dist/bundle.js
+ 3222* nv webpack.config.js
+ 3223* webpack
+ 3224* npm i html-webpack-plugin -D
+ 3225* nv src/index.html
+ 3226* webpack
+ 3227* tree -I "node_modules"
+ 3228* nautilus
+ 3229* webpack
+ 3230* cat src/file.css
+ 3231* nv webpack.config.js
+ 3232* webpack
+ 3233* tree -I "node_modules"
+ 3234* npm install sass-loader sass webpack --save-dev
+ 3235* nv src/index.js
+ 3236* touch src/style.scss
+ 3237* nv webpack.config.js
+ 3238* nv src/style.scss
+ 3239* nv webpack.config.js
+ 3240* webpack
+ 3241* mc
+ 3242* nv src/index.html
+ 3243* cat src/style.scss
+ 3244* git status
+ 3245* git checkout hassan-branch
+ 3246* git checkout hassan-b
+ 3247* git checkout -b hassan-b
+ 3248* git status
+ 3249* git add .
+ 3250* git status
+ 3251* mc
+ 3252* git pull
+ 3253* git checkout main
+ 3254* mc
+ 3255* git checkout hassan-b
+ 3256* git rm node_modules/ -rf
+ 3257* git status
+ 3258* git rm dist/* -rm
+ 3259* git rm dist -rm
+ 3260* git rm dist -rf
+ 3261* git status
+ 3262* cat package.json
+ 3263* git status
+ 3264* git commit -m 'add a sample project to use sass and webapck'
+ 3265* git push
+ 3266* git push --set-upstream origin hassan-b 
+
