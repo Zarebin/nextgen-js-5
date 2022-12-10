@@ -5,8 +5,32 @@ const selectClass = {
 };
 let flippedCards = 0;
 
+let dimNumber;
+//async function data(){
+//	let response = await fetch('http://192.168.43.170:8000/dimension/')
+//	let dimNumber = await response.json()
+//	return dimNumber
+//}
+ //data().then((dimNumber) => {
+	//let newdata = dimNumber;
+//	console.log(dimNumber);
+ //});
+//console.log(newdata.dimension);
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//	fetch("http://192.168.43.126:8000/playgame")
+//    .then((response) => {
+//      return response.json();
+//    }).then((data) => {
+//      dimNumber = data;
+//		setEventListeners(dimNumber.dimension);
+//		generateGame(dimNumber.dimension);
+//		console.log(dimNumber);
+//	});
+//	console.log(dimNumber,"ggg")
+	
+
 const shuffle = (array) => {
-  const newArray = [...array];
+	const newArray = [...array];
   for (let index = newArray.length - 1; index > 0; index--) {
     const randomIndex = Math.floor(Math.random() * (index + 1));
     const original = newArray[index];
@@ -33,7 +57,7 @@ const generateGame = () => {
   if (dimensions % 2 !== 0) {
     alert("The dimension should be an even number.Please check.");
   }
-  const emojis = ["🌂", "🧶", "🎓", "🐹", "🐳", "🌴", "🦦", "🏹", "🎹", "🪐"];
+  const emojis = ["🌂", "🧶", "🎓", "🐹", "🐳", "🌴", "🦦", "🏹", "🎹", "🪐","🦴","🧠","🧵"];
   const picks = selectRandom(emojis, (dimensions * dimensions) / 2);
   const items = shuffle([...picks, ...picks]);
   selectClass.board_box.innerHTML = `
@@ -101,7 +125,8 @@ const setEventListeners = () => {
       if (!document.querySelectorAll(".card:not(.flipped)").length) {
         selectClass.win.innerHTML = ``;
       }
-      generateGame();
+      generateGame(dimNumber);
+		setEventListener(dimNumber);
     }
   });
 };

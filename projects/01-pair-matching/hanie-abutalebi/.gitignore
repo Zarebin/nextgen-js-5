@@ -1,0 +1,11 @@
+node_modules/
+dist/
+\
+\
+index.epub
+*.log
+*.cache
+.cache
+.DS_Store
+src/file.txt
+'\'
