@@ -1,31 +1,26 @@
-const selectors = {
-    boardContainer: document.querySelector('.board-container'),
-    board: document.querySelector('.board'),
-    win: document.querySelector('.win')
-}
+// define variables 
+    const boardContainer = document.querySelector('.board-container')
+    const board = document.querySelector('.board')
+    const win = document.querySelector('.win')
+	const state ={flippedCards: 0}
 
-
-    flippedCards: 0,
-    totalFlips: 0,
-
-
-const randommize = a => {
+// randomimize the number of cards 
+function randommize (a) {
     const array = [...a]
-
     for (let i = array.length - 1; i > 0; i--) {
         const random = Math.floor(Math.random() * (i + 1))
-        const original = array[i]
-
+        const currentArray = array[i]
         array[i] = array[random]
-        array[random] = original
+        array[random] = currentArray
     }
 
     return array;
 }
+
 // pick the random of 
-const pickRandom = (a, items) => {
-    const array = [...a]
-    const randomPicks = []
+function pickRandom(a, items)  {
+	const array = [...a];
+	const randomPicks = [];
 
     for (let i = 0; i < items; i++) {
         const randomIndex = Math.floor(Math.random() * array.length)
@@ -36,16 +31,30 @@ const pickRandom = (a, items) => {
 
     return randomPicks
 }
- // create the board game (  column & row of game board  )
-const generateGame = () => {
+//fetch API 
+async function applyNumber() {
+	let abortApi = new AbortController();
+	const signal = abortApi.signal;
+	let getApiTimer = setTimeout(() => abortApi.abort(),3000);
+	let dimension = await fetch('http://192.168.43.20:8000/dimension',signal)
+		.then(response => response.json())
+		.then(response => {return response.dimension})
 
-    const dimensions = selectors.board.getAttribute('data-dimension');
-	// console.log(dimensions);
+//if the response is faild the dimension is 8
+		.catch(e => {
+			return 2})
+		clearTimeout(getApiTimer);
+		return dimension
+}
+// create the board game (:  column & row of game board  )
+  async function createGame(){
 
+   // const dimensions = board.getAttribute('data-dimension');
+	 let dimensions = await applyNumber();
 	// define numbers (card items )
-    const emojis = [...Array(dimensions * dimensions).keys()];
-	// console.log(emojis);
-    const picks = pickRandom(emojis, (dimensions * dimensions) / 2) 
+    const itemArray = [...Array(dimensions * dimensions).keys()];
+	
+    const picks = pickRandom(itemArray, (dimensions * dimensions) / 2) 
     const items = randommize([...picks, ...picks])
     const cards = `
         <div class="board" style="grid-template-columns: repeat(${dimensions}, auto)">
@@ -60,33 +69,30 @@ const generateGame = () => {
     
     const parser = new DOMParser().parseFromString(cards, 'text/html')
 
-    selectors.board.replaceWith(parser.querySelector('.board'))
+   board.replaceWith(parser.querySelector('.board'))
 }
-
-
-const flipBackCards = () => {
+function flipBackCards(){
     document.querySelectorAll('.card:not(.matched)').forEach(card => {
-        card.classList.remove('flipped')
+        card.classList.remove('flipped');
     })
 
-    flippedCards = 0
+   state.flippedCards = 0
 }
 
-const flipCard = card => {
-    flippedCards++
-    state.totalFlips++
+function  flipCard(card) {
+   state.flippedCards++
 
 
     if (state.flippedCards <= 2) {
         card.classList.add('flipped')
     }
 
-    if (flippedCards === 2) {
+    if (state.flippedCards === 2) {
         const flippedCards = document.querySelectorAll('.flipped:not(.matched)')
 
         if (flippedCards[0].innerText === flippedCards[1].innerText) {
-            flippedCards[0].classList.add('matched')
-            flippedCards[1].classList.add('matched')
+            flippedCards[0].classList.add('matched');
+            flippedCards[1].classList.add('matched');
         }
 
         setTimeout(() => {
@@ -97,8 +103,8 @@ const flipCard = card => {
     // If there are no more cards that we can flip, we won the game
     if (!document.querySelectorAll('.card:not(.flipped)').length) {
         setTimeout(() => {
-            selectors.boardContainer.classList.add('flipped')
-            selectors.win.innerHTML = `
+            boardContainer.classList.add('flipped');
+            win.innerHTML = `
                 <span class="win-text">
                  Congrats :)))<br />
                 </span>
@@ -109,10 +115,10 @@ const flipCard = card => {
     }
 }
 
-const attachEventListeners = () => {
+function attachEventListeners() {
     document.addEventListener('click', event => {
-        const eventTarget = event.target
-        const eventParent = eventTarget.parentElement
+        const eventTarget = event.target;
+        const eventParent = eventTarget.parentElement;
 
         if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped')) {
             flipCard(eventParent)
@@ -120,5 +126,6 @@ const attachEventListeners = () => {
     })
 }
 
-generateGame()
+createGame()
 attachEventListeners()
+

@@ -2,7 +2,7 @@
     const boardContainer = document.querySelector('.board-container')
     const board = document.querySelector('.board')
     const win = document.querySelector('.win')
-	const state ={flippedCards: 0, totalFlips:0,loop:null}
+	const state ={flippedCards: 0}
 
 // randomimize the number of cards 
 function randommize (a) {
@@ -19,8 +19,8 @@ function randommize (a) {
 
 // pick the random of 
 function pickRandom(a, items)  {
-    const array = [...a]
-    const randomPicks = []
+	const array = [...a];
+	const randomPicks = [];
 
     for (let i = 0; i < items; i++) {
         const randomIndex = Math.floor(Math.random() * array.length)
@@ -31,11 +31,8 @@ function pickRandom(a, items)  {
 
     return randomPicks
 }
-
-
 //fetch API 
 async function applyNumber() {
-	// the default of api 
 	let abortApi = new AbortController();
 	const signal = abortApi.signal;
 	let getApiTimer = setTimeout(() => abortApi.abort(),3000);
@@ -45,21 +42,18 @@ async function applyNumber() {
 
 //if the response is faild the dimension is 8
 		.catch(e => {
-			return 8})
+			return 2})
 		clearTimeout(getApiTimer);
 		return dimension
 }
-//applyNumber();
-
-
- // create the board game (  column & row of game board  )
+// create the board game (:  column & row of game board  )
   async function createGame(){
 
    // const dimensions = board.getAttribute('data-dimension');
 	 let dimensions = await applyNumber();
 	// define numbers (card items )
     const itemArray = [...Array(dimensions * dimensions).keys()];
-	// console.log(emojis);
+	
     const picks = pickRandom(itemArray, (dimensions * dimensions) / 2) 
     const items = randommize([...picks, ...picks])
     const cards = `
@@ -77,8 +71,6 @@ async function applyNumber() {
 
    board.replaceWith(parser.querySelector('.board'))
 }
-
-
 function flipBackCards(){
     document.querySelectorAll('.card:not(.matched)').forEach(card => {
         card.classList.remove('flipped');
@@ -89,7 +81,6 @@ function flipBackCards(){
 
 function  flipCard(card) {
    state.flippedCards++
-    state.totalFlips++
 
 
     if (state.flippedCards <= 2) {
