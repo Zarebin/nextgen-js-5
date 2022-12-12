@@ -44,7 +44,7 @@ async function applyNumber() {
 		.then(response => {return response.dimension})
 
 //if the response is faild the dimension is 8
-		.catch(e => {
+		.catch(() => {
 			return 8})
 		clearTimeout(getApiTimer);
 		return dimension
@@ -53,7 +53,7 @@ async function applyNumber() {
   async function createGame(){
 
    // const dimensions = board.getAttribute('data-dimension');
-	 let dimensions = await applyNumber();
+	let dimensions = await applyNumber();
 	// define numbers (card items )
     const itemArray = [...Array(dimensions * dimensions).keys()];
 	
