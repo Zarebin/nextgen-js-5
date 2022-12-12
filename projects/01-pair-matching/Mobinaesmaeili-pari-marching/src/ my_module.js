@@ -1,12 +1,9 @@
+
 const helloWebpack=()=> {
-  let data=2;
+
   document.body.innerHTML = ` <h3 style="text-align: center;font-family: sans-serif;" id="parag">pair matching</h3> <center>
         <table cellspacing='0'></table>
     </center>`;
-
-
-
-
 
 var em = ["💐","🌹","🌻","🏵️","🌺","🌴","🌈","🍓","🍒","🍎","🍉","🍊","🥭","🍍","🍋","🍏","🍐","🥝","🍇","🥥","🍅","🌶️","🍄","🧅","🥦","🥑","🍔","🍕","🧁","🎂","🍬","🍩","🍫","🎈","😀","🤪","😋"," 👩🏼 "," 🦜","🦚","💻","☎️","❣️"];
 
@@ -20,27 +17,31 @@ if(p) while(--p) {
    em[p] = tmp;
 }
 
-
-
+ 
 //Variables
 var pre="", pID,rem,moves, ppID=0, turn=0, t="transform", flip="rotateY(180deg)", flipBack="rotateY(0deg)", time, mode;
 
 //Resizing Screen
 window.onresize = init;
 let init=()=> {
-   W = innerWidth;
-   H = innerHeight;
+  
+   //var W = innerWidth;
+   var H = innerHeight;
    $('body').height(H+"px");
    $('#ol').height(H+"px");
 }
+
 
 //Showing instructions
 window.onload = function() {
 fetch("/api")
   .then(response => response.json())
   .then((data) => {
-  numberRow=data.dimension;
-  console.log(numberRow);
+   
+   var numberRow=data.dimension;
+  
+  //console.log(numberRow);
+
   start(numberRow,numberRow);
   }
 
@@ -55,7 +56,6 @@ let  start=(r,l) =>{
     //Timer and moves
    var min=0;
    var sec=0;
-   var moves=0;
     $("#time").html("Time: 00:00");
     $("#moves").html("Moves: 0");
     time = setInterval(function() {
@@ -74,6 +74,7 @@ let  start=(r,l) =>{
     var items = [];
     for (var i=0;i<noItems;i++)
         items.push(em[i]);
+        // eslint-disable-next-line 
     for (var i=0;i<noItems;i++)
         items.push(em[i]);
     var tmp, c, p = items.length;
@@ -87,7 +88,7 @@ let  start=(r,l) =>{
     //Creating table
     $("table").html("");
     var n=1;
-    
+    // eslint-disable-next-line 
     for (var i = 1;i<=r;i++) {
         $("table").append("<tr>");
         for (var j = 1;j<=l;j++) {
@@ -110,10 +111,10 @@ let  start=(r,l) =>{
 
   //Variables
   let i = "#"+x+" .inner";
-  let f = "#"+x+" .inner .front";
   let b = "#"+x+" .inner .back";
   
   //Dont flip for these conditions
+  // eslint-disable-next-line 
   if (turn==2 || $(i).attr("flip")=="block" || ppID==x) {}
   
   //Flip
@@ -157,10 +158,13 @@ let  start=(r,l) =>{
     //If all pairs are matched
     if (rem==0) {
           clearInterval(time);
+          // eslint-disable-next-line 
           if (min==0) {
+            // eslint-disable-next-line 
               time = `${sec} seconds`;
           }
           else {
+            // eslint-disable-next-line 
               time = `${min} minute(s) and ${sec} second(s)`;
           }
           setTimeout(function() {
