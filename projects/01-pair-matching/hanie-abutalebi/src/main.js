@@ -1,36 +1,15 @@
+/* eslint-disable no-plusplus */
+import './style.scss';
+
 const selectClass = {
-  board: document.querySelector(".board"),
-  board_box: document.querySelector(".board-box"),
-  win: document.querySelector(".win"),
+  board: document.querySelector('.board'),
+  board_box: document.querySelector('.board-box'),
+  win: document.querySelector('.win'),
 };
 let flippedCards = 0;
-
 let dimNumber;
-//async function data(){
-//	let response = await fetch('http://192.168.43.170:8000/dimension/')
-//	let dimNumber = await response.json()
-//	return dimNumber
-//}
- //data().then((dimNumber) => {
-	//let newdata = dimNumber;
-//	console.log(dimNumber);
- //});
-//console.log(newdata.dimension);
-/////////////////////////////////////////////////////////////////////////////////////////////////
-//	fetch("http://192.168.43.126:8000/playgame")
-//    .then((response) => {
-//      return response.json();
-//    }).then((data) => {
-//      dimNumber = data;
-//		setEventListeners(dimNumber.dimension);
-//		generateGame(dimNumber.dimension);
-//		console.log(dimNumber);
-//	});
-//	console.log(dimNumber,"ggg")
-	
-
 const shuffle = (array) => {
-	const newArray = [...array];
+  const newArray = [...array];
   for (let index = newArray.length - 1; index > 0; index--) {
     const randomIndex = Math.floor(Math.random() * (index + 1));
     const original = newArray[index];
@@ -39,7 +18,6 @@ const shuffle = (array) => {
   }
   return newArray;
 };
-
 const selectRandom = (array, items) => {
   const newArray = [...array];
   const randomPicks = [];
@@ -53,36 +31,35 @@ const selectRandom = (array, items) => {
 };
 
 const generateGame = () => {
-  const dimensions = selectClass.board.getAttribute("data-dimension");
-  if (dimensions % 2 !== 0) {
-    alert("The dimension should be an even number.Please check.");
-  }
-  const emojis = ["🌂", "🧶", "🎓", "🐹", "🐳", "🌴", "🦦", "🏹", "🎹", "🪐","🦴","🧠","🧵"];
-  const picks = selectRandom(emojis, (dimensions * dimensions) / 2);
+  // const dimensions = selectClass.board.getAttribute('data-dimension');
+  // if (dimensions % 2 !== 0) {
+  // alert('The dimension should be an even number.Please check.');
+  // }
+  const emojis = ['🌂', '🧶', '🎓', '🐹', '🐳', '🌴', '🦦', '🏹', '🎹', '🪐', '🦴', '🧠', '🧵'];
+  const picks = selectRandom(emojis, (dimNumber * dimNumber) / 2);
   const items = shuffle([...picks, ...picks]);
   selectClass.board_box.innerHTML = `
-      <div class="board" style="grid-template-columns: repeat(${dimensions}, auto)">
+    <div class="board" style="grid-template-columns: repeat(${dimNumber}, auto)">
           ${items
-            .map(
-              (item) => `
-              <div class="card">
-                  <div class="card-front"></div>
-                  <div class="card-back">${item}</div>
-              </div>`
-            )
-            .join("")}
+    .map(
+      (item) => `
+    <div class="card">
+      <div class="card-front"></div>
+      <div class="card-back">${item}</div>
+    </div>`,
+    ).join('')}
      </div>
   `;
 };
-//flipback card
+//  flipback card
 const flipBack = () => {
-  document.querySelectorAll(".card:not(.equal)").forEach((card) => {
-    card.classList.remove("flipped");
+  document.querySelectorAll('.card:not(.equal)').forEach((card) => {
+    card.classList.remove('flipped');
   });
   flippedCards = 0;
 };
 
-//win function
+//  win function
 const win = () => {
   selectClass.win.innerHTML = `
             <span class="win-inner">
@@ -93,42 +70,47 @@ const win = () => {
 
 const flipCard = (card) => {
   flippedCards++;
-  //less than 2 card fliped
+  // less than 2 card fliped
   if (flippedCards <= 2) {
-    card.classList.add("flipped");
+    card.classList.add('flipped');
   }
-  //exactly 2 card fliped
+  //  exactly 2 card fliped
   if (flippedCards === 2) {
-    const flippedCards = document.querySelectorAll(".flipped:not(.match)");
+    flippedCards = document.querySelectorAll('.flipped:not(.match)');
 
     if (flippedCards[0].innerText === flippedCards[1].innerText) {
-      flippedCards[0].classList.add("equal");
-      flippedCards[1].classList.add("equal");
+      flippedCards[0].classList.add('equal');
+      flippedCards[1].classList.add('equal');
     }
     setTimeout(() => {
       flipBack();
     }, 1000);
   }
   // all cards fliped
-  if (!document.querySelectorAll(".card:not(.flipped)").length) {
+  if (!document.querySelectorAll('.card:not(.flipped)').length) {
     setTimeout(() => {
       win();
     }, 500);
   }
 };
-//event listener and restart button
+// event listener and restart button
 const setEventListeners = () => {
-  document.addEventListener("click", (event) => {
-    if (event.target.className.includes("card-front")) {
+  document.addEventListener('click', (event) => {
+    if (event.target.className.includes('card-front')) {
       flipCard(event.target.parentElement);
-    } else if (event.target.className.includes("restart")) {
-      if (!document.querySelectorAll(".card:not(.flipped)").length) {
-        selectClass.win.innerHTML = ``;
+    } else if (event.target.className.includes('restart')) {
+      if (!document.querySelectorAll('.card:not(.flipped)').length) {
+        selectClass.win.innerHTML = '';
       }
       generateGame(dimNumber);
-		setEventListener(dimNumber);
     }
   });
 };
-generateGame();
-setEventListeners();
+generateGame(dimNumber);
+setEventListeners(dimNumber);
+fetch('http://192.168.43.126:8000/playgame')
+  .then((response) => response.json()).then((data) => {
+    dimNumber = data;
+    setEventListeners(dimNumber.dimension);
+    generateGame(dimNumber.dimension);
+  });
