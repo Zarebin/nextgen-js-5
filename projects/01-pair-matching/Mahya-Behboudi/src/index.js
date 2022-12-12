@@ -1,3 +1,6 @@
+import './style.scss';
+
+
 // define variables 
     const boardContainer = document.querySelector('.board-container')
     const board = document.querySelector('.board')
@@ -42,7 +45,7 @@ async function applyNumber() {
 
 //if the response is faild the dimension is 8
 		.catch(e => {
-			return 2})
+			return 8})
 		clearTimeout(getApiTimer);
 		return dimension
 }
