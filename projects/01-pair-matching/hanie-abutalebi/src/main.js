@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import './style.scss';
 
 const selectClass = {
@@ -10,7 +9,7 @@ let flippedCards = 0;
 let dimNumber;
 const shuffle = (array) => {
   const newArray = [...array];
-  for (let index = newArray.length - 1; index > 0; index--) {
+  for (let index = newArray.length - 1; index > 0; index -= 1) {
     const randomIndex = Math.floor(Math.random() * (index + 1));
     const original = newArray[index];
     newArray[index] = newArray[randomIndex];
@@ -22,7 +21,7 @@ const selectRandom = (array, items) => {
   const newArray = [...array];
   const randomPicks = [];
 
-  for (let index = 0; index < items; index++) {
+  for (let index = 0; index < items; index += 1) {
     const randomIndex = Math.floor(Math.random() * newArray.length);
     randomPicks.push(newArray[randomIndex]);
     newArray.splice(randomIndex, 1);
@@ -69,7 +68,7 @@ const win = () => {
 };
 
 const flipCard = (card) => {
-  flippedCards++;
+  flippedCards += 1;
   // less than 2 card fliped
   if (flippedCards <= 2) {
     card.classList.add('flipped');
