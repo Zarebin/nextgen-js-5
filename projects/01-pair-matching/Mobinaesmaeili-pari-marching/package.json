@@ -42,5 +42,8 @@
     "rules": {
       "no-undef": 1
     }
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }

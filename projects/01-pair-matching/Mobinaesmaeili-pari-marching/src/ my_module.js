@@ -34,7 +34,8 @@ let init=()=> {
 
 //Showing instructions
 window.onload = function() {
-fetch("/api")
+   
+fetch("http://127.0.0.1/dimensionpairmatching/") 
   .then(response => response.json())
   .then((data) => {
    
