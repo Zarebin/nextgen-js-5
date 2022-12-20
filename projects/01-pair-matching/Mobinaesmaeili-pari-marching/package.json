@@ -1,13 +1,12 @@
 {
   "name": "testwebpack3",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "dev": "webpack-dev-server --config webpack.dev.config.js --hot",
-    "start": "node src/server.js",
+    "start": "node app.js",
     "lint": "eslint ."
   },
   "author": "",
@@ -45,5 +44,7 @@
   },
   "dependencies": {
     "express": "^4.18.2"
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
