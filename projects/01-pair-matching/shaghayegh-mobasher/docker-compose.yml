@@ -1,0 +1,14 @@
+services:
+    nginx:
+        image: mobasher/pairmatchingnginx
+        ports:
+            - "8080:80"
+        restart: always
+        depends_on:
+            - expressserver
+        container_name: pairmatching_nginx
+    expressserver:
+        image: mobasher/pairmatchingserver
+        ports:
+            - "9000:9000"
+        container_name: pairmatching_server
