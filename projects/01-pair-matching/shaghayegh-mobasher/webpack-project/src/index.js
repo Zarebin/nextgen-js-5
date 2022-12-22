@@ -31,7 +31,7 @@ const getNumber = async function fetchNumberOfRowsAndColumns() {
   const controller = new AbortController();
   const timeout = 4000;
   const id = setTimeout(() => controller.abort(), timeout);
-  const num = await fetch('http://192.168.43.20:8000/playgame', {
+  const num = await fetch('/api', {
     method: 'GET',
     signal: controller.signal,
   })

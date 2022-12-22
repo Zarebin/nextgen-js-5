@@ -43,5 +43,18 @@ module.exports = {
   plugins: [
     new HtmlWebpackP({ template: './src/index.html'})
   ],
-  mode: 'development'
+  mode: 'development',
+  //to recompile whenever files change:
+  //watch: true,
+  watchOptions: {
+		ignored: /node_modules/,
+		poll: 1000
+	},
+  //For running dev server in docker:
+  devServer: {
+		compress: false,
+		host: "0.0.0.0", //use this instead of localhost
+		port: 3000,
+		//disableHostCheck: true
+	}
 }
