@@ -1,12 +1,12 @@
-# Specify base image
-FROM hub.hamdocker.ir/node:alpine
+FROM hub.hamdocker.ir/nginx:alpine
 
-# Copy directory to working dir
-WORKDIR /usr/app
-COPY ./ /usr/app
+# Making a directory for files in dist folder (after webpack builds the project)
+RUN mkdir -p /var/www/html/webpack
+COPY ./dist/index.html /var/www/html/webpack
+COPY ./dist/bundle.js /var/www/html/webpack
 
-# Install dependencies
-RUN npm install
+# Specify default config for nginx
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
-#default command
-CMD ["npm", "start"]
+EXPOSE 80
+

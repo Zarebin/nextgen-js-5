@@ -5,14 +5,8 @@ services:
             - "8080:80"
         restart: always
         depends_on:
-            - webpackproject
             - expressserver
         container_name: pairmatching_nginx
-    webpackproject:
-        image: mobasher/pairmatching
-        ports:
-            - "3000:3000"
-        container_name: pairmatching_project
     expressserver:
         image: mobasher/pairmatchingserver
         ports:
