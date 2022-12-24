@@ -12,7 +12,8 @@ module.exports = {
         
     },
     "extends": [
-        "eslint:recommended",
+         "airbnb",
+         "eslint:recommended",
         "plugin:react/recommended",
     ],
     "overrides": [
