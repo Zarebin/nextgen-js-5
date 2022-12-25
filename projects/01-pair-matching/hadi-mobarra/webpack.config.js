@@ -1,7 +1,8 @@
 //webpack config file
+//
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const HtmlWebpackP = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -22,25 +23,25 @@ module.exports = {
         }
 	  },
       {
+        test: /\.txt$/,
+        use: 'raw-loader',
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
+      },
+      {
         test: /\.s[ac]ss$/i,
         use: [
           "style-loader",
           "css-loader",
           "sass-loader",
         ]
-      },
-	  {
-		  test: /\.css$/i,
-		  use: ['style-loader', 'css-loader']
-	  },
-	  {
-		  test: /\.txt$/,
-		  use: 'raw-loader',
-	  }
+      }
     ]
   },
   plugins: [
-    new HtmlWebpackP({ template: './src/index.html'})
+    new HtmlWebpackPlugin({ template: './src/index.html'})
   ],
-  mode: 'development'
+  mode: 'development',
 }

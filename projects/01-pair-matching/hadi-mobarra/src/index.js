@@ -1,11 +1,16 @@
+import './style.scss';
+
+
 // Fetch API to get the number of row and column
 async function chartNumberFunc() {
-  const chartNumber = await fetch('http://192.168.43.126:8000/playgame')
+  const chartNumber = await fetch('/api')
     .then((response) => response.json())
-    .then((data) => data.dimension)
-    .catch((err) => (err));
+    .then((data) => data.num)
+    .catch((err) => err);
   return chartNumber;
 }
+
+chartNumberFunc();
 
 // Array of numbers for Game
 const gameValues = [];
@@ -42,8 +47,8 @@ function cardMatcher() {
           if (firstCard === secondCard) {
             trueChoosenCards += trueChoosenCards;
             // Changes the value of found numbers to its own value.
-            const divs2 = document.getElementsByTagName('div'); let
-              i = divs2.length;
+            const divs2 = document.getElementsByTagName('div');
+            let i = divs2.length;
             while (i >= 0) {
               i -= 1;
               if (divs2[i].getAttribute('inner') === choosenCards[0]) {
@@ -51,7 +56,6 @@ function cardMatcher() {
               }
             }
             document.getElementById('Trues').innerHTML = trueChoosenCards;
-            // alert('Trueeee :)');
           }
           // make arrays empty for the next step
           choosenCards = [];
@@ -69,6 +73,7 @@ function cardMatcher() {
 // Generate Table with 8*8 squares
 async function tableGenerator() {
   const chartNumber = await chartNumberFunc();
+  // i <= chartNumber
   for (let i = 1; i <= chartNumber; i += 1) {
     const cardItem = document.createElement('div');
     cardItem.setAttribute('class', 'cardColumn');
@@ -95,10 +100,16 @@ tableGenerator();
 setTimeout(() => {
   const divs = document.getElementsByTagName('div'); let
     i = divs.length;
-  while (i >= 0) {
-    i -= 1;
+  while (--i) {
+   // i -= 1;
     if (divs[i].getAttribute('class') === 'cardRow') {
       divs[i].innerHTML = '?';
     }
   }
 }, 5000);
+
+
+
+
+
+
