@@ -1,11 +1,2 @@
-node_modules/
-dist/
-\
-\
-index.epub
-*.log
-*.cache
-.cache
-.DS_Store
-src/file.txt
-'\'
+../express/node_modules
+express/node_modules/

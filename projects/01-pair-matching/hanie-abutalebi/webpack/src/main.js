@@ -30,11 +30,11 @@ const selectRandom = (array, items) => {
 };
 
 const generateGame = () => {
-  // const dimensions = selectClass.board.getAttribute('data-dimension');
-  // if (dimensions % 2 !== 0) {
-  // alert('The dimension should be an even number.Please check.');
-  // }
-  const emojis = ['🌂', '🧶', '🎓', '🐹', '🐳', '🌴', '🦦', '🏹', '🎹', '🪐', '🦴', '🧠', '🧵'];
+//   const dimensions = selectClass.board.getAttribute('data-dimension');
+//   if (dimensions % 2 !== 0) {
+//   alert('The dimension should be an even number.Please check.');
+//   }
+  const emojis = ['🌂', '🧶', '🎓', '🐹', '🐳', '🌴', '🦦', '🏹', '🎹', '🪐'];
   const picks = selectRandom(emojis, (dimNumber * dimNumber) / 2);
   const items = shuffle([...picks, ...picks]);
   selectClass.board_box.innerHTML = `
@@ -107,7 +107,8 @@ const setEventListeners = () => {
 };
 generateGame(dimNumber);
 setEventListeners(dimNumber);
-fetch('http://192.168.43.126:8000/playgame')
+
+fetch('http://localhost:7000/api')
   .then((response) => response.json()).then((data) => {
     dimNumber = data;
     setEventListeners(dimNumber.dimension);

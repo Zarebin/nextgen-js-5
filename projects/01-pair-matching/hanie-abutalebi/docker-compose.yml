@@ -1,0 +1,12 @@
+services:
+    nginx:
+        image: hanieabutalebi/myapp
+        ports:
+            - "8081:80"
+        restart: always
+        container_name: game_nginx
+    expressserver:
+        image: hanieabutalebi/express
+        ports:
+            - "7000:7000"
+        container_name: game-server
