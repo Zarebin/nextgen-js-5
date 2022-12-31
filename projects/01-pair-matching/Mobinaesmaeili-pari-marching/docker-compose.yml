@@ -1,3 +1,4 @@
+
 services:
     nginx:
         image: projectfront/pairmatchingnginx
@@ -7,6 +8,8 @@ services:
         depends_on:
             - expressserver
         container_name: pairmatching_nginx
+        # extra_hosts:
+        # - "host.docker.internal:host-gateway"
     expressserver:
         image: projectfront/pairmatchingserver
         ports:
