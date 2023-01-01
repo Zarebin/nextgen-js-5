@@ -1,0 +1,12 @@
+services:
+    nginx:
+        image: bundle/webpack
+        ports:
+            - "808:80"
+        restart: always
+        container_name: nginx
+    expressserver:
+        image: heyserver
+        ports:
+            - "9001:9001"
+        container_name: node_server
