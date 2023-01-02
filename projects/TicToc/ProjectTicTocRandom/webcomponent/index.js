@@ -150,7 +150,8 @@ class EmployeeCard extends HTMLElement{
     comPhase();
   };
   document.getElementById("reset-btn").onclick = function() {
-    alert('reset ');
+    //alert('reset game');
+    location.reload();
     this.initial();
     tttArr = [null, null, null, null, null, null, null, null, null];
     for (var i = 0, len = tttArr.length; i < len; i++) {
