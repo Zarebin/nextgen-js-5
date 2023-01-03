@@ -1,12 +1,10 @@
 const template = document.createElement('template');
 template.innerHTML = `
-
  <style>
       h2{
         color: purple;
       }
       @import url(https://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300);
-
 * {
   padding: 0;
   border: 0;
@@ -15,32 +13,26 @@ template.innerHTML = `
   box-sizing: border-box;
   font-family: Open Sans, Arial;
 }
-
 body {
   height: 100%;
   color: #f7f7f7;
   background-color: #333;
 }
-
 header {
   padding: 32px 0;
   color: #f7f7f7;
   font-family: 'Pacifico';
   font-size: 48px;
 }
-
 .text-center {
   text-align: center;
 }
-
 .center {
   margin: 0 auto;
 }
-
 #scoreboard {
   
 }
-
 .scorebox {
   display: inline-block;
   position: relative;
@@ -62,15 +54,12 @@ header {
 #o-part:before {
   content: 'O';
 }
-
 .score {
   padding: 4px;
 }
-
 #log {
   padding: 16px 0;
 }
-
 table {
   border-collapse: collapse;
   margin: 0 auto;
@@ -83,12 +72,9 @@ td {
   text-align: center;
   font-size: 48px;
 }
-
-
 #ctrl {
   padding: 16px 0;
 }
-
 #reset-btn {
   color: #f7f7f7;
   font-size: 24px;
@@ -102,7 +88,6 @@ td {
 #reset-btn:active {
   opacity: 0.5;
 }
-
 footer {
   color: #fff;
   text-align: center;
@@ -113,11 +98,8 @@ footer > a {
   text-decoration: none;
 }
     </style>
-
     <header class="text-center">Tic-Toc-Toe</header>
     
-
-
     `;
 
 class EmployeeCard extends HTMLElement{
@@ -309,7 +291,7 @@ function playerPhase() {
   }
 }
 function comPhase() {
-  function isMatchpoint(type : number) : false |0 |1|2|3|4|5|6|7|8|9{
+  function isMatchpoint(type : number) {
     if (tttArr[0] == null) {
       if (tttArr[1] == type && tttArr[2] == type) {
         return 0;
@@ -400,7 +382,7 @@ function comPhase() {
         return 8;
       }
     }
-    return false;
+    return '0';
   }
   function isWining(type :any) {
     if (tttArr[0] == null) {
@@ -462,10 +444,16 @@ function comPhase() {
   }
   
   if (typeof isMatchpoint(comMark) === "number") {
+   
+       console.log(isMatchpoint(comMark));
+        console.log( typeof isMatchpoint(comMark));
       tttArr[isMatchpoint(comMark)] = comMark;
+  
   } else if (typeof isMatchpoint(playerMark) === "number") {
+    
     tttArr[isMatchpoint(playerMark)] = comMark;
   } else if (typeof isWining(comMark) === "number") {
+    
     tttArr[isMatchpoint(comMark)] = comMark;
   } else {
     if (Math.random() > 0.5 && tttArr[4] === null) {
@@ -501,3 +489,4 @@ function comPhase() {
 }
 
 /***Main***/
+
