@@ -3,9 +3,9 @@ import './style.scss';
 
 // Fetch API to get the number of row and column
 async function chartNumberFunc() {
-  const chartNumber = await fetch('/api')
+  const chartNumber = await fetch('http://localhost:8085/api')
     .then((response) => response.json())
-    .then((data) => data.num)
+    .then((data) => console.log(data.dimension))
     .catch((err) => err);
   return chartNumber;
 }

@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 app.get('/api', (req, res) => {
-	res.json({num: 4});
+	res.json({dimension: 4});
 	}
 )
 

@@ -1,14 +1,19 @@
 services:
     nginx:
-        image: pair-matching-game
+        image: pair-matching/webpack
         ports:
             - "8090:80"
         restart: always
         depends_on:
             - myserver
-        container_name: pair-matching-game
+        container_name: pair-matching-client-container
     myserver:
-        image: pair-matching-server
+        image: pair-matching/server
         ports:
             - "8085:80"
-        container_name: pair-matching_server
+        container_name: pair-matching-server-container
+
+
+
+
+
