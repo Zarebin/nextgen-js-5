@@ -6,20 +6,13 @@ services:
     container_name: back
     hostname: nodejs
     ports:
-      "3000:3000"
-    networks:
-      - external-network
+      - 3000:3000
   front-app:
     build: 
       context: ./front
     container_name: front
     hostname: nginx
     ports:
-      - "2000:2000"
+      - 2000:80
     depends_on:
       - back-app
-    networks:
-      - external-network
-networks:
-  external-network:
-    external: true
