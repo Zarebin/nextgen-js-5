@@ -30,9 +30,7 @@ header {
 .center {
   margin: 0 auto;
 }
-#scoreboard {
-  
-}
+
 .scorebox {
   display: inline-block;
   position: relative;
@@ -42,6 +40,7 @@ header {
   margin: 0 16px;
   font-size: 24px;
   text-align: right;
+  cursor:pointer;
 }
 #x-part:before, #o-part:before {
   position: absolute;
@@ -101,64 +100,12 @@ footer > a {
     <header class="text-center">Tic-Toc-Toe</header>
     
     `;
-let playerMark, comMark, playerScore = 0, comScore = 0, playerChoice, winner, test;
-class EmployeeCard extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-        this.initial();
-        //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
-        //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
-    }
-    initial() {
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
-        for (let i = 0, len = document.getElementsByClassName("grid").length; i < len; i++) {
-            document.getElementsByClassName("grid")[i].innerHTML = '';
-        }
-        const xPart = document.getElementById("x-part");
-        xPart.onclick = function () {
-            playerMark = 'X';
-            comMark = 'O';
-            display("log", "It's your turn");
-            comPhase();
-        };
-        const oPart = document.getElementById("o-part");
-        oPart.onclick = function () {
-            playerMark = 'O';
-            comMark = 'X';
-            display("log", "It's your turn");
-            comPhase();
-        };
-        const resetButton = document.getElementById("reset-btn");
-        resetButton.onclick = function () {
-            //alert('reset game');
-            location.reload();
-            //this.initial();
-            tttArr = [null, null, null, null, null, null, null, null, null];
-            for (let i = 0, len = tttArr.length; i < len; i++) {
-                click(i);
-            }
-            display("log", "New round");
-            //this.initial();
-        };
-    }
-    connectedCallback() {
-        this.h3 = this.getAttribute("name");
-        this.render();
-    }
-    render() {
-        this.h3;
-    }
-}
-window.customElements.define('employee-card', EmployeeCard);
-var tttArr = [null, null, null, null, null, null, null, null, null];
-// playerMark: any,
-// comMark: any,
-// playerScore = 0,
-// comScore = 0,
+let playerMark, comMark, playerScore = 0, comScore = 0, 
 // playerChoice,
-// winner: any,
+winner;
 // test;
+// --------- define functions here
+let tttArr = [null, null, null, null, null, null, null, null, null];
 function display(id, val) {
     const idd = document.getElementById(id);
     idd.innerHTML = val;
@@ -263,31 +210,9 @@ function result() {
     }
     for (let i = 0, len = tttArr.length; i < len; i++) {
         const grid = document.getElementsByClassName("grid")[i];
-        grid.onclick = function () { };
-    }
-}
-function click(index) {
-    if (tttArr[index] == null) {
-        const grid = document.getElementsByClassName("grid")[index];
         grid.onclick = function () {
-            tttArr[index] = playerMark;
-            displayttt();
-            if (isOver()) {
-                result();
-            }
-            else {
-                comPhase();
-            }
+            console.log('disalbed');
         };
-    }
-    else {
-        const grid = document.getElementsByClassName("grid")[index];
-        grid.onclick = function () { };
-    }
-}
-function playerPhase() {
-    for (let i = 0, len = tttArr.length; i < len; i++) {
-        click(i);
     }
 }
 function comPhase() {
@@ -443,8 +368,8 @@ function comPhase() {
         }
     }
     if (typeof isMatchpoint(comMark) === "number") {
-        console.log(isMatchpoint(comMark));
-        console.log(typeof isMatchpoint(comMark));
+        //  console.log(isMatchpoint(comMark));
+        // console.log( typeof isMatchpoint(comMark));
         tttArr[isMatchpoint(comMark)] = comMark;
     }
     else if (typeof isMatchpoint(playerMark) === "number") {
@@ -491,7 +416,96 @@ function comPhase() {
         result();
     }
     else {
-        playerPhase();
+        for (let i = 0, len = tttArr.length; i < len; i++) {
+            if (tttArr[i] == null) {
+                const grid = document.getElementsByClassName("grid")[i];
+                grid.onclick = function () {
+                    tttArr[i] = playerMark;
+                    displayttt();
+                    if (isOver()) {
+                        result();
+                    }
+                    else {
+                        comPhase();
+                    }
+                };
+            }
+        }
     }
 }
+function click(index) {
+    if (tttArr[index] == null) {
+        const grid = document.getElementsByClassName("grid")[index];
+        grid.onclick = function () {
+            tttArr[index] = playerMark;
+            displayttt();
+            if (isOver()) {
+                result();
+            }
+            else {
+                comPhase();
+            }
+        };
+    }
+    // else {
+    //   const grid =  document.getElementsByClassName("grid")[index] as HTMLTableElement;
+    //  grid.onclick = function() {};
+    // }
+}
+class EmployeeCard extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        this.initial();
+        //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
+        //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
+    }
+    initial() {
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+        for (let i = 0, len = document.getElementsByClassName("grid").length; i < len; i++) {
+            document.getElementsByClassName("grid")[i].innerHTML = '';
+        }
+        const xPart = document.getElementById("x-part");
+        xPart.onclick = function () {
+            playerMark = 'X';
+            comMark = 'O';
+            display("log", "It's your turn");
+            comPhase();
+        };
+        const oPart = document.getElementById("o-part");
+        oPart.onclick = function () {
+            playerMark = 'O';
+            comMark = 'X';
+            display("log", "It's your turn");
+            comPhase();
+        };
+        const resetButton = document.getElementById("reset-btn");
+        resetButton.onclick = function () {
+            //alert('reset game');
+            location.reload();
+            //this.initial();
+            tttArr = [null, null, null, null, null, null, null, null, null];
+            for (let i = 0, len = tttArr.length; i < len; i++) {
+                click(i);
+            }
+            display("log", "New round");
+            //this.initial();
+        };
+    }
+    connectedCallback() {
+        this.h3 = this.getAttribute("name");
+        this.render();
+    }
+    render() {
+        this.h3;
+    }
+}
+window.customElements.define('employee-card', EmployeeCard);
+// playerMark: any,
+// comMark: any,
+// playerScore = 0,
+// comScore = 0,
+// playerChoice,
+// winner: any,
+// test;
 /***Main***/

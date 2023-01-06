@@ -10,7 +10,7 @@
     "build": "npm run lint && npm run transpile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Mobina",
+  "author": "TicToc Game",
   "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.34.0",

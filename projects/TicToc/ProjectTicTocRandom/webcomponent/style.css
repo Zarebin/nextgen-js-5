@@ -46,6 +46,10 @@ header {
   margin: 0 16px;
   font-size: 24px;
   text-align: right;
+  cursor:pointer;
+}
+.scorebox:hover , #reset-btn:hover{
+  border: 2px solid #3fdb2b;
 }
 #x-part:before, #o-part:before {
   position: absolute;
