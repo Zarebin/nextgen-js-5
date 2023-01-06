@@ -101,7 +101,13 @@ footer > a {
     <header class="text-center">Tic-Toc-Toe</header>
     
     `;
-
+  let playerMark: any,
+    comMark: any,
+    playerScore = 0,
+    comScore = 0,
+    // playerChoice,
+    winner: any
+    // test;
 class EmployeeCard extends HTMLElement{
 	public attachShadow: any;
 	public shadowRoot: any;
@@ -118,28 +124,28 @@ class EmployeeCard extends HTMLElement{
     
      
  } 
-   initial() :void  {
+   initial(): void  {
    this.shadowRoot.appendChild(template.content.cloneNode(true));
-  for (var i = 0, len = document.getElementsByClassName("grid").length; i < len; i++) {
+  for (let i = 0, len = document.getElementsByClassName("grid").length; i < len; i++) {
     document.getElementsByClassName("grid")[i].innerHTML = '';
   }
-  let x_part =document.getElementById("x-part") as HTMLDivElement;
+  const xPart =document.getElementById("x-part") as HTMLDivElement;
   
-   x_part.onclick = function() {
+   xPart.onclick = function() {
     playerMark = 'X';
     comMark = 'O';
     display("log", "It's your turn");
     comPhase();
   };
-  let o_part =document.getElementById("o-part") as HTMLDivElement;
-  o_part.onclick = function() {
+  const oPart =document.getElementById("o-part") as HTMLDivElement;
+  oPart.onclick = function() {
     playerMark = 'O';
     comMark = 'X';
     display("log", "It's your turn");
     comPhase();
   };
- let reset_button =  document.getElementById("reset-btn") as HTMLButtonElement
- reset_button.onclick = function()  {
+ const resetButton =  document.getElementById("reset-btn") as HTMLButtonElement
+ resetButton.onclick = function()  {
     //alert('reset game');
     location.reload();
     //this.initial();
@@ -167,25 +173,25 @@ window.customElements.define('employee-card', EmployeeCard);
 
 
 
-var tttArr = [null, null, null, null, null, null, null, null, null],
-    playerMark :any,
-    comMark:any,
-    playerScore = 0,
-    comScore = 0,
-    playerChoice,
-    winner:any,
-    test;
+var tttArr = [null, null, null, null, null, null, null, null, null];
+    // playerMark: any,
+    // comMark: any,
+    // playerScore = 0,
+    // comScore = 0,
+    // playerChoice,
+    // winner: any,
+    // test;
 
-function display(id :any, val:any) {
-  let idd =document.getElementById(id) as HTMLElement;
+function display(id: any, val: any) {
+  const idd =document.getElementById(id) as HTMLElement;
   idd.innerHTML = val;
 }
 function displayttt() {
-  for (var i = 0, len = tttArr.length; i < len; i++) {
+  for (let i = 0, len = tttArr.length; i < len; i++) {
     if (tttArr[i] == null) {
       document.getElementsByClassName("grid")[i].innerHTML = '';
     } else {
-      let grid  :any=  document.getElementsByClassName("grid")[i] as HTMLTableElement;
+      const grid: any=  document.getElementsByClassName("grid")[i] as HTMLTableElement;
        grid.innerHTML  = tttArr[i];
     }
   }
@@ -261,14 +267,14 @@ function result() {
       display("log", "Draw");
       break;
   }
-  for (var i = 0, len = tttArr.length; i < len; i++) {
-    let grid  = document.getElementsByClassName("grid")[i] as HTMLTableElement;
+  for (let i = 0, len = tttArr.length; i < len; i++) {
+    const grid  = document.getElementsByClassName("grid")[i] as HTMLTableElement;
     grid.onclick = function() {};
   }
 }
-function click(index :any) {
+function click(index: any) {
   if (tttArr[index] == null) {
-    let grid = document.getElementsByClassName("grid")[index] as HTMLTableElement;
+    const grid = document.getElementsByClassName("grid")[index] as HTMLTableElement;
     grid.onclick = function() {
       tttArr[index] = playerMark;
       displayttt();
@@ -279,19 +285,19 @@ function click(index :any) {
       }
     };
   } else {
-    let grid =  document.getElementsByClassName("grid")[index] as HTMLTableElement;
+    const grid =  document.getElementsByClassName("grid")[index] as HTMLTableElement;
    grid.onclick = function() {};
   }
 }
 function playerPhase() {
   
   
-  for (var i = 0, len = tttArr.length; i < len; i++) {
+  for (let i = 0, len = tttArr.length; i < len; i++) {
     click(i);
   }
 }
 function comPhase() {
-  function isMatchpoint(type : number) {
+  function isMatchpoint(type: number) {
     if (tttArr[0] == null) {
       if (tttArr[1] == type && tttArr[2] == type) {
         return 0;
@@ -384,7 +390,7 @@ function comPhase() {
     }
     return '0';
   }
-  function isWining(type :any) {
+  function isWining(type: any) {
     if (tttArr[0] == null) {
       if (tttArr[2] == type && tttArr[8] == type) {
         return 0;

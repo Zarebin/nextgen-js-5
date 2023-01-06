@@ -101,6 +101,7 @@ footer > a {
     <header class="text-center">Tic-Toc-Toe</header>
     
     `;
+let playerMark, comMark, playerScore = 0, comScore = 0, playerChoice, winner, test;
 class EmployeeCard extends HTMLElement {
     constructor() {
         super();
@@ -111,25 +112,25 @@ class EmployeeCard extends HTMLElement {
     }
     initial() {
         this.shadowRoot.appendChild(template.content.cloneNode(true));
-        for (var i = 0, len = document.getElementsByClassName("grid").length; i < len; i++) {
+        for (let i = 0, len = document.getElementsByClassName("grid").length; i < len; i++) {
             document.getElementsByClassName("grid")[i].innerHTML = '';
         }
-        let x_part = document.getElementById("x-part");
-        x_part.onclick = function () {
+        const xPart = document.getElementById("x-part");
+        xPart.onclick = function () {
             playerMark = 'X';
             comMark = 'O';
             display("log", "It's your turn");
             comPhase();
         };
-        let o_part = document.getElementById("o-part");
-        o_part.onclick = function () {
+        const oPart = document.getElementById("o-part");
+        oPart.onclick = function () {
             playerMark = 'O';
             comMark = 'X';
             display("log", "It's your turn");
             comPhase();
         };
-        let reset_button = document.getElementById("reset-btn");
-        reset_button.onclick = function () {
+        const resetButton = document.getElementById("reset-btn");
+        resetButton.onclick = function () {
             //alert('reset game');
             location.reload();
             //this.initial();
@@ -150,18 +151,25 @@ class EmployeeCard extends HTMLElement {
     }
 }
 window.customElements.define('employee-card', EmployeeCard);
-var tttArr = [null, null, null, null, null, null, null, null, null], playerMark, comMark, playerScore = 0, comScore = 0, playerChoice, winner, test;
+var tttArr = [null, null, null, null, null, null, null, null, null];
+// playerMark: any,
+// comMark: any,
+// playerScore = 0,
+// comScore = 0,
+// playerChoice,
+// winner: any,
+// test;
 function display(id, val) {
-    let idd = document.getElementById(id);
+    const idd = document.getElementById(id);
     idd.innerHTML = val;
 }
 function displayttt() {
-    for (var i = 0, len = tttArr.length; i < len; i++) {
+    for (let i = 0, len = tttArr.length; i < len; i++) {
         if (tttArr[i] == null) {
             document.getElementsByClassName("grid")[i].innerHTML = '';
         }
         else {
-            let grid = document.getElementsByClassName("grid")[i];
+            const grid = document.getElementsByClassName("grid")[i];
             grid.innerHTML = tttArr[i];
         }
     }
@@ -253,14 +261,14 @@ function result() {
             display("log", "Draw");
             break;
     }
-    for (var i = 0, len = tttArr.length; i < len; i++) {
-        let grid = document.getElementsByClassName("grid")[i];
+    for (let i = 0, len = tttArr.length; i < len; i++) {
+        const grid = document.getElementsByClassName("grid")[i];
         grid.onclick = function () { };
     }
 }
 function click(index) {
     if (tttArr[index] == null) {
-        let grid = document.getElementsByClassName("grid")[index];
+        const grid = document.getElementsByClassName("grid")[index];
         grid.onclick = function () {
             tttArr[index] = playerMark;
             displayttt();
@@ -273,12 +281,12 @@ function click(index) {
         };
     }
     else {
-        let grid = document.getElementsByClassName("grid")[index];
+        const grid = document.getElementsByClassName("grid")[index];
         grid.onclick = function () { };
     }
 }
 function playerPhase() {
-    for (var i = 0, len = tttArr.length; i < len; i++) {
+    for (let i = 0, len = tttArr.length; i < len; i++) {
         click(i);
     }
 }
