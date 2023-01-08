@@ -1,17 +1,21 @@
 
 services:
     nginx:
-        image: projectfront/pairmatchingnginx
+        build: 
+            context: ./webpack-project
+        
         ports:
-            - "8080:80"
+            - "8087:80"
         restart: always
         depends_on:
             - expressserver
-        container_name: pairmatching_nginx
+        container_name: nginxserverme
         # extra_hosts:
         # - "host.docker.internal:host-gateway"
     expressserver:
-        image: projectfront/pairmatchingserver
+        build: 
+            context: ./expressnodejs
+       
         ports:
             - "9000:9000"
-        container_name: pairmatching_server
+        container_name: expressserverme
