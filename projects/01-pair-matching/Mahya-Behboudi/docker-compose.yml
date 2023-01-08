@@ -1,12 +1,22 @@
+version: '3'
 services:
     nginx:
-        image: bundle/webpack
+        build: 
+            context: ./webpack
+        container_name: webpack
+        hostname: nginx
+        # image: bundle/webpack
         ports:
             - "808:80"
         restart: always
         container_name: nginx
     expressserver:
-        image: heyserver
+        build: 
+            context: ./expressServer
+        container_name: node_server
+        hostname: nodejs
+        # image: heyserver
         ports:
             - "9001:9001"
-        container_name: node_server
+        depends_on:
+            - nginx 
