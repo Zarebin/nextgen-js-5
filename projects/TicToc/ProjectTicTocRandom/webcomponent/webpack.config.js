@@ -9,11 +9,13 @@ module.exports={
 	module:{
 		rules:[
 			{test:/\.css$/,use:'css-loader'},
-			{test:/\.ts/,use:'ts-loader'}
+			{test:/\.tsx?$/,use:'ts-loader',
+			exclude: /node_modules/,
+		     }
 		],
 	},
 	resolve: {
-		extensions: ['.ts'],
+		extensions: ['.tsx', '.ts' , 'js'],
 	},
 	mode:'development'
 
