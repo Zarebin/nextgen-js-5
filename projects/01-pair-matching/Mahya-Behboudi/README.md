@@ -2,12 +2,12 @@
  - the dimension of the game is served from nginx and prepared by express node js
  - two dockerfiles are prepared **the source** and **express server**
  - two container build in docker-compose 
- - you can paly the game with commad in ypu terminal below :)
+ - you can UP the docker-compose with the commad in your terminal below :)
        
 `docker-compose up -d`
        
        
- - insert:
+ -  then insert:
      
 ```localhost:808```
          
