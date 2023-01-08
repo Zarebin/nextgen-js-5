@@ -5,11 +5,11 @@ services:
             context: ./webpack-project
         
         ports:
-            - "8087:80"
+            - "8085:80"
         restart: always
         depends_on:
             - expressserver
-        container_name: nginxserverme
+        container_name: nginxservermobinapair
         # extra_hosts:
         # - "host.docker.internal:host-gateway"
     expressserver:
