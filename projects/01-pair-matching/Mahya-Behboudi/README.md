@@ -4,13 +4,15 @@
      -two container build in docker-compose 
      -you can paly the game with commad in ypu terminal below :)
        
-      `docker-compose up -d`
+            `docker-compose up -d`
        
        
      -insert:
-       `localhost:808`
+              `localhost:808`
          
          in your browser
+         
+         
      -enjoy playing... :D
 
 
