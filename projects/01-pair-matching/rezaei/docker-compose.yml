@@ -3,15 +3,11 @@ services:
   back-app:
     build:
       context: ./back
-    container_name: back
-    hostname: nodejs
     ports:
       - 3000:3000
   front-app:
     build: 
       context: ./front
-    container_name: front
-    hostname: nginx
     ports:
       - 2000:80
     depends_on:

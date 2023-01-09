@@ -1,11 +1,12 @@
 "use strict";
+import "./style.css";
 
 var gameSection = document.querySelector('section');
 var dim = 4;
 
 const getDimention = () => {
     let dimention = 
-        fetch('http://localhost:3000/api',{method:'GET'})
+        fetch('/api',{method:'GET'})
             .then(response => response.json())
             .then(response => {
                 return response.dimension;
