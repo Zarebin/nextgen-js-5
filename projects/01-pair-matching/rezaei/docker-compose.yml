@@ -1,0 +1,14 @@
+version : '3'
+services:
+  back-app:
+    build:
+      context: ./back
+    ports:
+      - 3000:3000
+  front-app:
+    build: 
+      context: ./front
+    ports:
+      - 2000:80
+    depends_on:
+      - back-app
