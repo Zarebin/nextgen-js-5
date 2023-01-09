@@ -3,20 +3,14 @@ services:
     nginx:
         build: 
             context: ./webpack
-        container_name: webpack
-        hostname: nginx
-        # image: bundle/webpack
         ports:
             - "808:80"
-        restart: always
-        container_name: nginx
+        depends_on:
+            - expressserver 
     expressserver:
         build: 
             context: ./expressServer
-        container_name: node_server
-        hostname: nodejs
-        # image: heyserver
         ports:
             - "9001:9001"
-        depends_on:
-            - nginx 
+        restart: on-failure
+    
