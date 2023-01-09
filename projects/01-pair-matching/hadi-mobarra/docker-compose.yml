@@ -1,18 +1,18 @@
 services:
-    nginx:
-        image: pair-matching/webpack
-        ports:
-            - "8090:80"
-        restart: always
-        depends_on:
+    mynginx:
+      build:
+        context: ./webpack
+      ports:
+            - "8091:80"
+      depends_on:
             - myserver
-        container_name: pair-matching-client-container
     myserver:
-        image: pair-matching/server
-        ports:
-            - "8085:80"
-        container_name: pair-matching-server-container
-
+      build: 
+        context: ./server
+      ports:
+            - "8086:80"
+      restart: on-failure
+        
 
 
 
