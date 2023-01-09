@@ -1,0 +1,3 @@
+[submodule "next-gen-project"]
+	path = next-gen-project
+	url = https://github.com/hadimobarra/hadimobarra.github.io.git
