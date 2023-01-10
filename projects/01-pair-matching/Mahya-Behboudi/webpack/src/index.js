@@ -37,13 +37,13 @@ function pickRandom(a, items) {
 async function applyNumber() {
   const abortApi = new AbortController();
   const { signal } = abortApi;
-  const getApiTimer = setTimeout(() => abortApi.abort(), 3000);
-  const dimension = await fetch('http://192.168.43.20:8000/dimension', signal)
+  const getApiTimer = setTimeout(() => abortApi.abort(), 2000);
+  const dimension = await fetch('/api', signal)
     .then((response) => response.json())
     .then((response) => response.dimension)
 
   // if the response is faild the dimension is 8
-    .catch(() => 8);
+    .catch(() => 4);
   clearTimeout(getApiTimer);
   return dimension;
 }
