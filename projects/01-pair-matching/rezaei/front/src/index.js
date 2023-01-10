@@ -2,16 +2,16 @@
 import "./style.css";
 
 var gameSection = document.querySelector('section');
-var dim = 4;
+var dim = 8;
 
-const getDimention = () => {
+const getDimention = async () => {
     let dimention = 
-        fetch('/api',{method:'GET'})
-            .then(response => response.json())
-            .then(response => {
-                return response.dimension;
+        await fetch('/api')
+            .then((response) => response.json())
+            .then((data) => {
+                return data.dimension;
             })
-            .catch(error => {
+            .catch((error) => {
                 console.log(error);
                 return 4;
             });
@@ -20,7 +20,7 @@ const getDimention = () => {
 
 const randomize = () => {
     let cards = [];
-    dim = getDimention();
+    //dim = getDimention();
     for(let i = 1 ; i <= (dim * dim) /2; i++ ){
         cards.push(i);
         cards.push(i);
@@ -72,7 +72,7 @@ const checkCards = (event) => {
     }
     if(toggleCard.length === dim * dim) {
         window.alert('You Won !')
-        restartGame();
+        //restartGame();
     }
 }
 const restartGame = () => {

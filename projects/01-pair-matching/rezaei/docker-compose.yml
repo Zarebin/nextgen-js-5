@@ -1,13 +1,17 @@
 version : '3'
 services:
   back-app:
+    image: hub.hamdocker.ir/node:alpine
     build:
       context: ./back
+      network: host
     ports:
       - 3000:3000
   front-app:
+    image: hub.hamdocker.ir/nginx:alpine
     build: 
       context: ./front
+      network: host
     ports:
       - 2000:80
     depends_on:

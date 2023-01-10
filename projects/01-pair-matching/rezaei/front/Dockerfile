@@ -1,8 +1,8 @@
 FROM hub.hamdocker.ir/node:alpine AS builder
 WORKDIR /projectfiles
 COPY . .
-CMD ["npm","install"]
-CMD ["webpack"]
+RUN npm install
+RUN npm run build
 
 FROM hub.hamdocker.ir/nginx:alpine
 COPY --from=builder /projectfiles/dist /usr/share/nginx/html
