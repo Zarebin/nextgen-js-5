@@ -1,21 +1,16 @@
-
+version: '3'
 services:
-    nginx:
+    nginxmobina:
         build: 
-            context: ./webpack-project
-        
+            context: ./webpack
         ports:
-            - "8085:80"
-        restart: always
+            - "8082:80"
         depends_on:
-            - expressserver
-        container_name: nginxservermobinapair
-        # extra_hosts:
-        # - "host.docker.internal:host-gateway"
-    expressserver:
+            - expressservermobina
+    expressservermobina:
         build: 
-            context: ./expressnodejs
-       
+            context: ./expressServer
         ports:
-            - "9000:9000"
-        container_name: expressserverme
+            - "9002:9002"
+        restart: on-failure
+    
