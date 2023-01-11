@@ -1,0 +1,16 @@
+version: '3'
+services:
+    nginx:
+        build: 
+            context: ./webpack
+        ports:
+            - "808:80"
+        depends_on:
+            - expressserver 
+    expressserver:
+        build: 
+            context: ./expressServer
+        ports:
+            - "9001:9001"
+        restart: on-failure
+    
