@@ -4,13 +4,13 @@ import './style.scss';
 // Fetch API to get the number of row and column
 async function chartNumberFunc() {
   const chartNumber = await fetch('/api')
-		.then((response) => {
-			response.json();
-		//	console.log('res: ', response);
-		} )
-    .then((data) => console.log(data.dimension))
+	.then((response) =>  response.json())
+		.then((data) => {
+			data.dimension;
+			let mydimension = data.dimension;
+			tableGenerator(mydimension);
+		})
     .catch((err) => err);
-  return chartNumber;
 }
 
 chartNumberFunc();
@@ -74,15 +74,13 @@ function cardMatcher() {
 }
 
 // Generate Table with 8*8 squares
-async function tableGenerator() {
-  const chartNumber = await chartNumberFunc();
-  // i <= chartNumber
-  for (let i = 1; i <= 8; i += 1) {
+function tableGenerator(num) {
+  for (let i = 1; i <= num; i += 1) {
     const cardItem = document.createElement('div');
     cardItem.setAttribute('class', 'cardColumn');
     cardItem.setAttribute('card-id', i);
     card.appendChild(cardItem);
-    for (let j = 0; j < 8; j += 1) {
+    for (let j = 0; j < num; j += 1) {
       const uniq = `id${(new Date()).getTime()}`;
       const arrLastElement = newHalfTwo.pop();
       const cardItemTwo = document.createElement('div');
