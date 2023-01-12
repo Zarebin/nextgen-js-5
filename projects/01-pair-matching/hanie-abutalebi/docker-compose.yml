@@ -1,0 +1,14 @@
+version : '3'
+services:
+  server-app:
+    build:
+      context: ./server
+    ports:
+      - 7000:7000
+  client-app:
+    build: 
+      context: ./client
+    ports:
+      - 8086:80
+    depends_on:
+      - server-app
