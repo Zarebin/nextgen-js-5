@@ -1,0 +1,19 @@
+services:
+    mynginx:
+      build:
+        context: ./webpack
+      ports:
+            - "8091:80"
+      depends_on:
+            - myserver
+    myserver:
+      build: 
+        context: ./server
+      ports:
+            - "8086:80"
+      restart: on-failure
+        
+
+
+
+
