@@ -6,7 +6,15 @@ const selectClass = {
   win: document.querySelector('.win'),
 };
 let flippedCards = 0;
-let dimNumber;
+// let dimNumber;
+
+// fetch('/api')
+//   .then((response) => response.json()).then((data) => {
+//     dimNumber = data.dimension;
+//     console.log(dimNumber);
+//     setEventListeners();
+//     generateGame();
+//   });
 const shuffle = (array) => {
   const newArray = [...array];
   for (let index = newArray.length - 1; index > 0; index -= 1) {
@@ -29,8 +37,8 @@ const selectRandom = (array, items) => {
   return randomPicks;
 };
 
-const generateGame = () => {
-//   const dimensions = selectClass.board.getAttribute('data-dimension');
+const generateGame = (dimNumber) => {
+//   const; dimensions = selectClass.board.getAttribute('data-dimension');
 //   if (dimensions % 2 !== 0) {
 //   alert('The dimension should be an even number.Please check.');
 //   }
@@ -75,7 +83,7 @@ const flipCard = (card) => {
   }
   //  exactly 2 card fliped
   if (flippedCards === 2) {
-    flippedCards = document.querySelectorAll('.flipped:not(.match)');
+    flippedCards = document.querySelectorAll('.flipped:not(.equal)');
 
     if (flippedCards[0].innerText === flippedCards[1].innerText) {
       flippedCards[0].classList.add('equal');
@@ -93,24 +101,28 @@ const flipCard = (card) => {
   }
 };
 // event listener and restart button
-const setEventListeners = () => {
+const setEventListeners = (dimNumber) => {
   document.addEventListener('click', (event) => {
     if (event.target.className.includes('card-front')) {
       flipCard(event.target.parentElement);
     } else if (event.target.className.includes('restart')) {
-      if (!document.querySelectorAll('.card:not(.flipped)').length) {
-        selectClass.win.innerHTML = '';
-      }
+      setTimeout(() => {
+        window.location.reload();
+      }, 10);
       generateGame(dimNumber);
+      setEventListeners(dimNumber);
     }
   });
 };
-generateGame(dimNumber);
-setEventListeners(dimNumber);
-
-fetch('http://localhost:7000/api')
-  .then((response) => response.json()).then((data) => {
-    dimNumber = data;
-    setEventListeners(dimNumber.dimension);
-    generateGame(dimNumber.dimension);
-  });
+// generateGame();
+// setEventListeners();
+async function getNumber() {
+  await fetch('/api')
+    .then((response) => response.json())
+    .then((data) => {
+      generateGame(data.dimension);
+      setEventListeners(data.dimension);
+    })
+    .catch((err) => err);
+}
+getNumber();
