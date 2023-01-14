@@ -2,25 +2,21 @@
 import "./style.css";
 
 var gameSection = document.querySelector('section');
-var dim = 8;
 
 const getDimention = async () => {
-    let dimention = 
+    let data = 
         await fetch('/api')
             .then((response) => response.json())
-            .then((data) => {
-                return data.dimension;
-            })
+            .then((data) => data)
             .catch((error) => {
                 console.log(error);
                 return 4;
             });
-    return dimention;
+    return data;
 }
 
-const randomize = () => {
+const randomize = (dim) => {
     let cards = [];
-    //dim = getDimention();
     for(let i = 1 ; i <= (dim * dim) /2; i++ ){
         cards.push(i);
         cards.push(i);
@@ -28,8 +24,8 @@ const randomize = () => {
     cards.sort(() => Math.random() - 0.5);
     return cards;
 }
-const cardsUI = () => {
-    const cards = randomize();
+const cardsUI = (dim) => {
+    const cards = randomize(dim);
     cards.forEach(item => {
         const card = document.createElement('div');
         const face = document.createElement('span');
@@ -47,11 +43,11 @@ const cardsUI = () => {
         
         card.addEventListener('click', (event) => {
             card.classList.toggle('toggleCard');
-            checkCards(event);
+            checkCards(event, dim);
         })
     })
 }
-const checkCards = (event) => {
+const checkCards = (event, dim) => {
     const clickedCard = event.target;
     clickedCard.classList.add('flipped');
     const flippedCards = document.querySelectorAll('.flipped');
@@ -72,22 +68,18 @@ const checkCards = (event) => {
     }
     if(toggleCard.length === dim * dim) {
         window.alert('You Won !')
-        //restartGame();
+        restartGame();
     }
 }
-const restartGame = () => {
-    let cardData = randomize();
-    let faces = document.querySelectorAll('.face');
-    let cards = document.querySelectorAll('.card');
-    gameSection.style.pointerEvents = 'none'
-    cardData.forEach((item, index) => {
-        cards[index].classList.remove('toggleCard');
-        setTimeout(() => {
-            cards[index].style.pointerEvents = 'all';
-        faces[index].src = item.src;
-        cards[index].setAttribute('name', item.name);
-        gameSection.style.pointerEvents = 'all';
-        },1500);
-    })
+const restartGame = async () => {
+    var cardbox = document.getElementById('cardbox');
+    cardbox.innerHTML = "";
+    await StartGame();
 }
-cardsUI();
+
+const StartGame = async () => {
+    let data = await getDimention();
+    cardsUI(parseInt(data.dim));
+}
+
+StartGame();
