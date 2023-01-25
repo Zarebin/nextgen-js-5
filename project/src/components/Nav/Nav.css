@@ -1,0 +1,31 @@
+.main-nav {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  justify-content: center;
+  background-color: white;
+}
+
+.youtube-logo {
+  margin-left: 5em;
+  padding-right: 20px;
+  /* width: 100px;
+  height: 20px; */
+}
+
+@media screen and (max-width: 500px) {
+  .youtube-logo {
+    margin-left: 5%;
+  }
+
+  .search-wrapper {
+    width: 100%;
+    margin-left: 0.5em;
+  }
+  .search-bar {
+    width: 94%;
+  }
+}
+.paddingclass{
+  padding:0px 20px;
+}
