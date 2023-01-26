@@ -1,0 +1,16 @@
+version: '3'
+services:
+    nginxmobina:
+        build: 
+            context: ./webpack
+        ports:
+            - "8082:80"
+        depends_on:
+            - expressservermobina
+    expressservermobina:
+        build: 
+            context: ./expressServer
+        ports:
+            - "9002:9002"
+        restart: on-failure
+    
