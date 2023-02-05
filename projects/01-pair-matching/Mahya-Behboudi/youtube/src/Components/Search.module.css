@@ -1,0 +1,28 @@
+.formcontainer {
+    width: 100%;
+    /* background-color: red; */
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.formcontainer__form {
+    /* background-color: blue; */
+    width: 22%;
+
+}
+.formcontainer__form div{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+
+}
+.formcontainer__form div label{
+font-size: 20px;
+}
+.formcontainer__form div input {
+    padding: 10px;
+    width: 300px;
+    border: 2px solid blue;
+    border-radius: 30px;
+}

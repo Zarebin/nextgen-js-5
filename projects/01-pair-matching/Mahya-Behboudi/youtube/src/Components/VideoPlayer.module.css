@@ -1,0 +1,8 @@
+.videoPleyer {
+    width: 60%;
+}
+.videoPleyer .videoPlaye__iframe  {
+    width: 90%;
+    height: 800px;
+    margin:20px;
+}

@@ -1,0 +1,22 @@
+.videoList {
+    position: absolute;
+    right: 0;
+    /* background-color: red; */
+    border-left: 2px solid #000;
+    margin-right: 0;
+    width: 40%;
+ 
+}
+.videoList__{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.videoList__ h3 {
+    font-size:30px ;
+    /* background-color: blue; */
+    font-weight: bolder;
+
+}

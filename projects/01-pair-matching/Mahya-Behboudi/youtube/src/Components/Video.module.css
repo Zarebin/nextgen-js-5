@@ -1,0 +1,12 @@
+.videoItem {
+    width: 80%;
+    height: 300px;
+    padding: 30px 30px 20px 30px ;
+    cursor: pointer ;
+}
+.videoItem__title {
+
+    margin: -50px;
+    text-align: center;
+    font-size: 20px;
+}
